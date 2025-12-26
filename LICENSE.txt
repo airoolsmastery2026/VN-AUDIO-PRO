@@ -1,0 +1,16 @@
+
+BẢN QUYỀN VÀ GIẤY PHÉP THƯƠNG MẠI - VN AUDIO PRO
+--------------------------------------------------
+Phiên bản: 1.0.0 (2025)
+
+1. SỞ HỮU TRÍ TUỆ:
+Toàn bộ mã nguồn, thiết kế giao diện, thuật toán và tên thương hiệu "VN AUDIO PRO" thuộc quyền sở hữu độc quyền của VN AUDIO PRO Team.
+
+2. QUYỀN KHAI THÁC THƯƠNG MẠI:
+- Người dùng cuối có quyền sử dụng ứng dụng để tạo ra các sản phẩm âm thanh phục vụ mục đích thương mại (Quảng cáo, Podcast, Phim, Nhạc).
+- Nghiêm cấm mọi hành vi sao chép, dịch ngược (reverse engineering) hoặc phân phối lại mã nguồn của ứng dụng này mà không có sự đồng ý bằng văn bản.
+
+3. TRÁCH NHIỆM:
+Ứng dụng sử dụng công nghệ Gemini API của Google. Người dùng chịu trách nhiệm về nội dung do mình tạo ra và tuân thủ các quy định pháp luật hiện hành.
+
+Copyright © 2025 VN AUDIO PRO. Đã đăng ký bản quyền.

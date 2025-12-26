@@ -1,0 +1,9 @@
+{
+  "name": "VN AUDIO PRO",
+  "description": "Hệ sinh thái âm thanh AI chuyên nghiệp dành cho Windows & MacOS.",
+  "version": "1.0.0",
+  "requestFramePermissions": [
+    "microphone",
+    "camera"
+  ]
+}
