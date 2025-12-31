@@ -51,20 +51,8 @@ const BatchStudio: React.FC<BatchStudioProps> = ({
         // Map raw data to BatchTask format
         const newTasks: Partial<BatchTask>[] = data.map((row: any) => {
           // Attempt to find fields regardless of case or specific header names if simple list
-          // Safely extract text, handling objects if necessary to avoid [object Object]
-          let textVal = row.Text || row.text || row.content;
-          if (!textVal && typeof row === 'object' && row !== null) {
-              const values = Object.values(row);
-              if (values.length > 0) textVal = values[0];
-          } else if (!textVal) {
-              textVal = row;
-          }
-
-          const text = (typeof textVal === 'object' && textVal !== null) ? JSON.stringify(textVal) : String(textVal || "");
-
-          let voiceNameVal = row.Voice || row.voice;
-          const voiceName = (typeof voiceNameVal === 'object' && voiceNameVal !== null) ? String(voiceNameVal) : voiceNameVal;
-          
+          const text = row.Text || row.text || row.content || (typeof row === 'object' ? Object.values(row)[0] : row);
+          const voiceName = row.Voice || row.voice;
           const langCode = row.Language || row.language || row.lang;
 
           // Try to match voice name to ID, default to first standard voice
@@ -75,7 +63,7 @@ const BatchStudio: React.FC<BatchStudioProps> = ({
           }
 
           return {
-            text: text,
+            text: String(text),
             voiceId: voiceId,
             targetLang: langCode || 'Vietnamese',
             speed: 1.0,
@@ -106,12 +94,6 @@ const BatchStudio: React.FC<BatchStudioProps> = ({
                     <div className={`w-3 h-3 bg-white rounded-full transition-transform duration-300 ${autoDownload ? 'translate-x-5' : 'translate-x-0'}`}></div>
                  </div>
                  <span className="text-[10px] font-black uppercase tracking-widest text-gray-400 group-hover:text-indigo-600 transition-colors">{t.autoDownload}</span>
-               </button>
-               <button onClick={onToggleAutoStart} className="flex items-center gap-2 group">
-                 <div className={`w-10 h-5 rounded-full p-1 transition-colors duration-300 ${autoStart ? 'bg-emerald-500' : 'bg-gray-200'}`}>
-                    <div className={`w-3 h-3 bg-white rounded-full transition-transform duration-300 ${autoStart ? 'translate-x-5' : 'translate-x-0'}`}></div>
-                 </div>
-                 <span className="text-[10px] font-black uppercase tracking-widest text-gray-400 group-hover:text-emerald-500 transition-colors">{t.autoStart}</span>
                </button>
                {window.electronAPI && (
                  <button onClick={onSelectOutputDirectory} className="flex items-center gap-2 px-3 py-1.5 bg-slate-50 border border-slate-200 rounded-lg hover:border-indigo-300 transition-colors">

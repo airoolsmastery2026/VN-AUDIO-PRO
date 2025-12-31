@@ -3,5 +3,8 @@ const { contextBridge, ipcRenderer } = require('electron');
 
 contextBridge.exposeInMainWorld('electronAPI', {
   platform: process.platform,
-  // Thêm các API cần thiết để giao tiếp với OS tại đây
+  selectDirectory: () => ipcRenderer.invoke('select-directory'),
+  saveAudioFile: (directory, filename, buffer) => 
+    ipcRenderer.invoke('save-audio-file', { directory, filename, buffer }),
+  openUpdateFolder: () => ipcRenderer.invoke('open-update-folder')
 });

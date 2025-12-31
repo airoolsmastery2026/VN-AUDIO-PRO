@@ -7,17 +7,119 @@ const DUMMY_MALE_REF = "UklGRiSDAABXQVZFZm10IBAAAAABAAEAQB8AAIA+AAACABAAZGF0YQCB
 const DUMMY_FEMALE_REF = "UklGRiSDAABXQVZFZm10IBAAAAABAAEAQB8AAIA+AAACABAAZGF0YQCBAAAAAAA=";
 
 export const VOICES: Voice[] = [
+  // --- New Pite Voice (Standard) ---
+  { 
+    id: 'pite', 
+    name: 'Pite', 
+    region: 'International', 
+    gender: 'Male', 
+    description: 'Trợ lý ảo vui vẻ, năng động', 
+    geminiVoice: 'Puck', 
+    category: 'Standard',
+    styleDescription: 'giọng nam trẻ trung, năng lượng cao, vui vẻ, tốc độ nhanh, phong cách trợ lý ảo hiện đại'
+  },
+
   // --- Standard Voices (Narration & Regional) ---
-  { id: 'binh', name: 'Bình', region: 'North', gender: 'Male', description: 'Nam miền Bắc, trầm ấm', geminiVoice: 'Kore', category: 'Standard' },
-  { id: 'doan', name: 'Đoan', region: 'South', gender: 'Female', description: 'Nữ miền Nam, dịu dàng', geminiVoice: 'Puck', category: 'Standard' },
-  { id: 'ngoc', name: 'Ngọc', region: 'North', gender: 'Female', description: 'Nữ miền Bắc, trong trẻo', geminiVoice: 'Kore', category: 'Standard' },
-  { id: 'huong', name: 'Hương', region: 'North', gender: 'Female', description: 'Nữ miền Bắc, truyền cảm', geminiVoice: 'Puck', category: 'Standard' },
-  { id: 'dung', name: 'Dung', region: 'South', gender: 'Female', description: 'Nữ miền Nam, ngọt ngào', geminiVoice: 'Puck', category: 'Standard' },
-  { id: 'nguyen', name: 'Nguyên', region: 'South', gender: 'Male', description: 'Nam miền Nam, mạnh mẽ', geminiVoice: 'Charon', category: 'Standard' },
-  { id: 'son', name: 'Sơn', region: 'South', gender: 'Male', description: 'Nam miền Nam, ấm áp', geminiVoice: 'Zephyr', category: 'Standard' },
-  { id: 'tuyen', name: 'Tuyên', region: 'North', gender: 'Male', description: 'Nam miền Bắc, đĩnh đạc', geminiVoice: 'Charon', category: 'Standard' },
-  { id: 'vinh', name: 'Vĩnh', region: 'South', gender: 'Male', description: 'Nam miền Nam, truyền thống', geminiVoice: 'Zephyr', category: 'Standard' },
-  { id: 'ngan', name: 'Nguyễn Ngọc Ngạn', region: 'North', gender: 'Male', description: 'Giọng kể chuyện huyền thoại', geminiVoice: 'Charon', category: 'Standard' },
+  { 
+    id: 'binh', 
+    name: 'Bình', 
+    region: 'North', 
+    gender: 'Male', 
+    description: 'Nam miền Bắc, trầm ấm', 
+    geminiVoice: 'Kore', 
+    category: 'Standard',
+    styleDescription: 'giọng nam miền Bắc, âm sắc trầm, ấm áp, đọc chậm rãi, tin cậy, phù hợp tin tức'
+  },
+  { 
+    id: 'doan', 
+    name: 'Đoan', 
+    region: 'South', 
+    gender: 'Female', 
+    description: 'Nữ miền Nam, dịu dàng', 
+    geminiVoice: 'Puck', 
+    category: 'Standard',
+    styleDescription: 'giọng nữ miền Nam, nhẹ nhàng, dịu dàng, ngọt ngào, cảm xúc'
+  },
+  { 
+    id: 'ngoc', 
+    name: 'Ngọc', 
+    region: 'North', 
+    gender: 'Female', 
+    description: 'Nữ miền Bắc, trong trẻo', 
+    geminiVoice: 'Kore', 
+    category: 'Standard',
+    styleDescription: 'giọng nữ miền Bắc, cao, trong trẻo, tươi sáng, phát âm chuẩn Hà Nội'
+  },
+  { 
+    id: 'huong', 
+    name: 'Hương', 
+    region: 'North', 
+    gender: 'Female', 
+    description: 'Nữ miền Bắc, truyền cảm', 
+    geminiVoice: 'Puck', 
+    category: 'Standard',
+    styleDescription: 'giọng nữ miền Bắc, truyền cảm, sâu lắng, kể chuyện, tâm tình'
+  },
+  { 
+    id: 'dung', 
+    name: 'Dung', 
+    region: 'South', 
+    gender: 'Female', 
+    description: 'Nữ miền Nam, ngọt ngào', 
+    geminiVoice: 'Puck', 
+    category: 'Standard',
+    styleDescription: 'giọng nữ miền Nam, rất ngọt ngào, dễ thương, thân thiện, tươi vui'
+  },
+  { 
+    id: 'nguyen', 
+    name: 'Nguyên', 
+    region: 'South', 
+    gender: 'Male', 
+    description: 'Nam miền Nam, mạnh mẽ', 
+    geminiVoice: 'Charon', 
+    category: 'Standard',
+    styleDescription: 'giọng nam miền Nam, mạnh mẽ, dứt khoát, nam tính, âm vực rộng'
+  },
+  { 
+    id: 'son', 
+    name: 'Sơn', 
+    region: 'South', 
+    gender: 'Male', 
+    description: 'Nam miền Nam, ấm áp', 
+    geminiVoice: 'Zephyr', 
+    category: 'Standard',
+    styleDescription: 'giọng nam miền Nam, ấm áp, nhẹ nhàng, tình cảm, phù hợp đọc truyện'
+  },
+  { 
+    id: 'tuyen', 
+    name: 'Tuyên', 
+    region: 'North', 
+    gender: 'Male', 
+    description: 'Nam miền Bắc, đĩnh đạc', 
+    geminiVoice: 'Charon', 
+    category: 'Standard',
+    styleDescription: 'giọng nam miền Bắc, đĩnh đạc, nghiêm túc, chính luận, giọng phát thanh viên'
+  },
+  { 
+    id: 'vinh', 
+    name: 'Vĩnh', 
+    region: 'South', 
+    gender: 'Male', 
+    description: 'Nam miền Nam, truyền thống', 
+    geminiVoice: 'Zephyr', 
+    category: 'Standard',
+    styleDescription: 'giọng nam miền Nam, chất giọng xưa, truyền thống, chậm rãi, kể chuyện lịch sử'
+  },
+  { 
+    id: 'ngan', 
+    name: 'Nguyễn Ngọc Ngạn', 
+    region: 'North', 
+    gender: 'Male', 
+    description: 'Giọng kể chuyện huyền thoại', 
+    geminiVoice: 'Charon', 
+    category: 'Standard',
+    styleDescription: 'giọng nam già, kể chuyện ma mị, huyền bí, nhấn nhá đặc trưng, tốc độ chậm'
+  },
   
   // --- Core Reference Samples (New Cloning Templates) ---
   { 
@@ -44,6 +146,17 @@ export const VOICES: Voice[] = [
   },
 
   // --- Vocal Legends (Music Studio Only) ---
+  { 
+    id: 'pite-pro', 
+    name: 'Pite (Vocal)', 
+    region: 'International', 
+    gender: 'Male', 
+    description: 'Giọng hát AI Pite năng động', 
+    geminiVoice: 'Puck', 
+    isLegend: true,
+    category: 'VN-Artist',
+    styleDescription: 'giọng nam cao vui vẻ, năng lượng tích cực, phong cách hoạt hình hiện đại'
+  },
   { 
     id: 'sontung', 
     name: 'Sơn Tùng M-TP', 

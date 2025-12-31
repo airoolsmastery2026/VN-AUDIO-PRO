@@ -1,6 +1,7 @@
 
-const { app, BrowserWindow, session, shell } = require('electron');
+const { app, BrowserWindow, session, shell, dialog, ipcMain } = require('electron');
 const path = require('path');
+const fs = require('fs');
 
 function createWindow() {
   const mainWindow = new BrowserWindow({
@@ -33,6 +34,33 @@ function createWindow() {
     return { action: 'deny' };
   });
 }
+
+// IPC Handlers for Auto-Save & System Integration
+ipcMain.handle('select-directory', async () => {
+  const result = await dialog.showOpenDialog({
+    properties: ['openDirectory']
+  });
+  if (result.canceled) return null;
+  return result.filePaths[0];
+});
+
+ipcMain.handle('save-audio-file', async (event, { directory, filename, buffer }) => {
+  try {
+    const filePath = path.join(directory, filename);
+    await fs.promises.writeFile(filePath, Buffer.from(buffer));
+    return { success: true, path: filePath };
+  } catch (error) {
+    console.error('Save failed:', error);
+    return { success: false, error: error.message };
+  }
+});
+
+ipcMain.handle('open-update-folder', async () => {
+  // Opens the folder where the app executable or updates might be located
+  // Adjust path as needed for your build structure
+  const p = path.join(app.getPath('exe'), '..'); 
+  await shell.openPath(p);
+});
 
 // Cấp quyền Micro cho ứng dụng Desktop
 app.whenReady().then(() => {

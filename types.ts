@@ -33,7 +33,7 @@ export interface Voice {
   geminiVoice: string;
   isLegend?: boolean;
   styleDescription?: string;
-  category?: 'Standard' | 'VN-Artist' | 'Global-Artist' | 'Custom-Clone';
+  category?: 'Standard' | 'VN-Artist' | 'Global-Artist' | 'Custom-Clone' | 'Local-Offline';
   referenceAudio?: string;
 }
 
@@ -74,3 +74,20 @@ export interface BatchTask {
 }
 
 export type ActiveTab = 'editor' | 'pricing' | 'docs' | 'batch' | 'vocal' | 'writer' | 'music' | 'admin';
+
+declare global {
+  interface AIStudio {
+    hasSelectedApiKey: () => Promise<boolean>;
+    openSelectKey: () => Promise<void>;
+  }
+
+  interface Window {
+    electronAPI?: {
+      platform: string;
+      selectDirectory: () => Promise<string | null>;
+      saveAudioFile: (directory: string, filename: string, buffer: ArrayBuffer) => Promise<{ success: boolean; path?: string }>;
+      openUpdateFolder: () => Promise<void>;
+    };
+    aistudio?: AIStudio;
+  }
+}
