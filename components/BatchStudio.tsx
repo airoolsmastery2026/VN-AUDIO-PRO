@@ -43,6 +43,19 @@ const BatchStudio: React.FC<BatchStudioProps> = ({
     }
   };
 
+  const safeString = (val: any): string => {
+    if (val === null || val === undefined) return "";
+    if (typeof val === 'string') return val;
+    if (typeof val === 'object') {
+      try {
+        return JSON.stringify(val);
+      } catch (e) {
+        return "";
+      }
+    }
+    return String(val);
+  };
+
   const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
@@ -53,24 +66,27 @@ const BatchStudio: React.FC<BatchStudioProps> = ({
           // Attempt to find fields regardless of case or specific header names if simple list
           // Safely extract text, handling objects if necessary to avoid [object Object]
           let textVal = row.Text || row.text || row.content;
-          if (!textVal && typeof row === 'object' && row !== null) {
-              const values = Object.values(row);
-              if (values.length > 0) textVal = values[0];
-          } else if (!textVal) {
-              textVal = row;
+          
+          if (textVal === undefined || textVal === null) {
+              if (typeof row === 'object' && row !== null) {
+                   const values = Object.values(row);
+                   if (values.length > 0) textVal = values[0];
+              } else {
+                   textVal = row;
+              }
           }
 
-          const text = (typeof textVal === 'object' && textVal !== null) ? JSON.stringify(textVal) : String(textVal || "");
+          const text = safeString(textVal);
 
           let voiceNameVal = row.Voice || row.voice;
-          const voiceName = (typeof voiceNameVal === 'object' && voiceNameVal !== null) ? String(voiceNameVal) : voiceNameVal;
+          const voiceName = safeString(voiceNameVal);
           
           const langCode = row.Language || row.language || row.lang;
 
           // Try to match voice name to ID, default to first standard voice
           let voiceId = standardVoices[0].id;
           if (voiceName) {
-            const found = standardVoices.find(v => v.name.toLowerCase() === String(voiceName).toLowerCase());
+            const found = standardVoices.find(v => v.name.toLowerCase() === voiceName.toLowerCase());
             if (found) voiceId = found.id;
           }
 
@@ -81,7 +97,7 @@ const BatchStudio: React.FC<BatchStudioProps> = ({
             speed: 1.0,
             pitch: 'normal'
           };
-        }).filter(t => t.text && t.text.trim().length > 0);
+        }).filter(t => t.text && t.text.trim().length > 0 && t.text !== "undefined" && t.text !== "null");
 
         onAddBatchTasks(newTasks);
         e.target.value = ''; // Reset input
